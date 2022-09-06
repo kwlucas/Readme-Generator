@@ -101,6 +101,19 @@ const usagePrompt = {
 //NO > continue
 
 //prompt for features
+const featurePrompt = {
+    type: 'input',
+    name: 'feature',
+    message: 'What is a feature of your project/application.',
+    validate: (ans) => {
+        if (ans) {
+            return true;
+        }
+        else {
+            return 'Please enter a valid feature of your project/application.';
+        }
+    }
+}
 //ADD another feature?
 //YES loop prompt
 //NO continue
