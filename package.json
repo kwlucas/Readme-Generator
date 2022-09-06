@@ -1,0 +1,31 @@
+{
+  "name": "readme-generator",
+  "version": "1.0.0",
+  "description": "Generate a markdown readme file after responding to a series of prompts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kwlucas/Readme-Generator.git"
+  },
+  "keywords": [
+    "readme",
+    "generator",
+    "markdown",
+    "student_project",
+    "project",
+    "node.js",
+    "inquirer"
+  ],
+  "author": "Kyle Lucas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kwlucas/Readme-Generator/issues"
+  },
+  "homepage": "https://github.com/kwlucas/Readme-Generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
