@@ -68,6 +68,19 @@ const highlightFeaturePrompt = {
 
 //Prompt Do you need to add set up instructions?
 //YES > Prompt for set up instructions
+const setUpPrompt = {
+    type: 'input',
+    name: 'installInstructions',
+    message: 'Write out the instructions for setting up or installing your project/application. (To break a line add two or more spaces)',
+    validate: (ans) => {
+        if (ans) {
+            return true;
+        }
+        else {
+            return 'Please enter instrcutions to install/set up your project/application.';
+        }
+    }
+}
 //NO > continue
 
 //Prompt Do you need to add usage directions?
