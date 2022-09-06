@@ -77,7 +77,7 @@ const setUpPrompt = {
             return true;
         }
         else {
-            return 'Please enter instrcutions to install/set up your project/application.';
+            return 'Please enter valid instrcutions to install/set up your project/application.';
         }
     }
 }
@@ -85,6 +85,19 @@ const setUpPrompt = {
 
 //Prompt Do you need to add usage directions?
 //YES > Prompt for usage directions
+const usagePrompt = {
+    type: 'input',
+    name: 'usageDirections',
+    message: 'Write out the directions for using your project/application. (To break a line add two or more spaces)',
+    validate: (ans) => {
+        if (ans) {
+            return true;
+        }
+        else {
+            return 'Please enter valid directions for how to properly use your project/application.';
+        }
+    }
+}
 //NO > continue
 
 //prompt for features
