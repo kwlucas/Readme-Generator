@@ -49,6 +49,8 @@ const basicInfoPrompts = [
 //Another highlight feature?
 //If yes loop the prompt if no continue
 
+
+
 //Prompt Make a place for preview image?
 
 //Prompt Do you need to add set up instructions?
@@ -70,5 +72,17 @@ const basicInfoPrompts = [
 //NO continue
 
 //Prompt for license message or leave blank for none
+
+function addItemPrompt(item) {
+    const itemPrompt = {
+        type: 'confirm',
+        name: 'willAdd',
+        message: `Do you want to add ${item} to the readme?`,
+        default: false
+    }
+    return inquirer.prompt(itemPrompt).then((ans) => {
+        console.log(ans);
+    })
+}
 
 //take answers and plug them in to MD timeplate literals and write file
