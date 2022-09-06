@@ -175,8 +175,8 @@ function addAnotherPrompt(repeatPrompt, item) {
 }
 
 //take answers and plug them in to MD timeplate literals and write file
-let title
-let description
+let title = '';
+let description = '';
 inquirer.prompt(basicInfoPrompts).then((ans) => {
     title = ans.title;
     description = ans.description;
@@ -187,6 +187,11 @@ inquirer.prompt(addItemPrompt('a highlight feature list')).then((ans) => {
     if(ans.willAdd){
         highlightFeatureArray = addAnotherPrompt(highlightFeaturePrompt, 'another highlight feature');
     }
+});
+
+let includePreview = false;
+inquirer.prompt(addItemPrompt('a placeholder section for a preview image')).then((ans) => {
+    includePreview = ans.willAdd;
 });
 
 let setupInstructions = '';
