@@ -149,10 +149,84 @@ function addItemPrompt(item) {
         name: 'willAdd',
         message: `Do you want to add ${item} to the readme?`,
         default: false
+    };
+    return itemPrompt;
+};
+
+function addAnotherPrompt(repeatPrompt, item) {
+    const itemPrompt = {
+        type: 'confirm',
+        name: 'addAnother',
+        message: `Do you want to add ${item} to the list?`,
+        default: false
     }
-    return inquirer.prompt(itemPrompt).then((ans) => {
-        console.log(ans);
+    const dataName = repeatPrompt.name;
+    const questions = [repeatPrompt, itemPrompt];
+    let itemsToAdd = [];
+    return inquirer.prompt(questions).then((ans) => {
+        itemsToAdd.push(ans[`${dataName}`]);
+        if(ans.addAnother) {
+            return addAnotherPrompt(repeatPrompt, item);
+        }
+        else {
+            return itemsToAdd;
+        }
     })
 }
 
 //take answers and plug them in to MD timeplate literals and write file
+let title
+let description
+inquirer.prompt(basicInfoPrompts).then((ans) => {
+    title = ans.title;
+    description = ans.description;
+});
+
+let highlightFeatureArray;
+inquirer.prompt(addItemPrompt('a highlight feature list')).then((ans) => {
+    if(ans.willAdd){
+        highlightFeatureArray = addAnotherPrompt(highlightFeaturePrompt, 'another highlight feature');
+    }
+});
+
+let setupInstructions = '';
+inquirer.prompt(addItemPrompt('setup/installation instructions')).then((ans) => {
+    if(ans.willAdd){
+        inquirer.prompt(setUpPrompt).then((answer) => {
+            setupInstructions = answer.installInstructions;
+        })
+    }
+});
+
+let usageDirections = '';
+inquirer.prompt(addItemPrompt('usage directions')).then((ans) => {
+    if(ans.willAdd){
+        inquirer.prompt(usagePrompt).then((answer) => {
+            usageDirections = answer.usageDirections;
+        })
+    }
+});
+
+let featureArray;
+inquirer.prompt(addItemPrompt('a feature list')).then((ans) => {
+    if(ans.willAdd){
+        featureArray = addAnotherPrompt(featurePrompt, 'another feature');
+    }
+});
+
+let creditArray;
+inquirer.prompt(addItemPrompt('a "credits" section')).then((ans) => {
+    if(ans.willAdd){
+        creditArray = addAnotherPrompt(creditPrompt, 'another contributor or asset');
+    }
+});
+let license = '';
+inquirer.prompt(licensePrompt).then((ans) => {
+    if(!ans.license || (ans.license).toLowerCase() == 'n/a'){
+        license = '';
+    }
+    else {
+        license = ans.license;
+    }
+});
+
