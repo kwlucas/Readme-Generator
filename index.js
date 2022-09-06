@@ -43,7 +43,7 @@ const basicInfoPrompts = [
             }
         }
     }
-]
+];
 
 //prompt for a highlight feature
 //Another highlight feature?
@@ -61,7 +61,7 @@ const highlightFeaturePrompt = {
             return 'Please enter a valid feature of your project/application.';
         }
     }
-}
+};
 
 
 //Prompt Make a place for preview image?
@@ -80,7 +80,7 @@ const setUpPrompt = {
             return 'Please enter valid instrcutions to install/set up your project/application.';
         }
     }
-}
+};
 //NO > continue
 
 //Prompt Do you need to add usage directions?
@@ -97,7 +97,7 @@ const usagePrompt = {
             return 'Please enter valid directions for how to properly use your project/application.';
         }
     }
-}
+};
 //NO > continue
 
 //prompt for features
@@ -113,7 +113,7 @@ const featurePrompt = {
             return 'Please enter a valid feature of your project/application.';
         }
     }
-}
+};
 //ADD another feature?
 //YES loop prompt
 //NO continue
@@ -131,12 +131,17 @@ const creditPrompt = {
             return 'Please enter a valid contributor/asset you want to credit.';
         }
     }
-}
+};
 //Add another credit?
 //YES loop prompt
 //NO continue
 
 //Prompt for license message or leave blank for none
+const licensePrompt = {
+    type: 'input',
+    name: 'license',
+    message: 'Enter your license or copywrite text. If you do not have a license leave this blank or type "N/A".'
+};
 
 function addItemPrompt(item) {
     const itemPrompt = {
