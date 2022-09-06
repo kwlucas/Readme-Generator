@@ -16,8 +16,34 @@ const fs = require("fs");
 
 
 //Prompt for application title
-
-//Prompt for description
+const basicInfoPrompts = [
+    {
+        type: 'input',
+        name: 'title',
+        message: 'What is the name/title of your project/application?',
+        validate: (ans) => {
+            if (ans) {
+                return true;
+            }
+            else {
+                return 'Please enter a valid title for your project/application.';
+            }
+        }
+    },
+    { //Prompt for description
+        type: 'input',
+        name: 'description',
+        message: 'Describe what your project/application does and your purpose for creating it.',
+        validate: (ans) => {
+            if (ans) {
+                return true;
+            }
+            else {
+                return 'Please enter a valid description for your project/application.';
+            }
+        }
+    }
+]
 
 //prompt for a highlight feature
 //Another highlight feature?
