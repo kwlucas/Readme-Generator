@@ -52,7 +52,7 @@ const basicInfoPrompts = [
 const highlightFeaturePrompt = {
     type: 'input',
     name: 'highlightFeature',
-    message: 'What is a highlight feature of your project/application.',
+    message: 'What is a highlight feature of your project/application?',
     validate: (ans) => {
         if (ans) {
             return true;
@@ -104,7 +104,7 @@ const usagePrompt = {
 const featurePrompt = {
     type: 'input',
     name: 'feature',
-    message: 'What is a feature of your project/application.',
+    message: 'What is a feature of your project/application?',
     validate: (ans) => {
         if (ans) {
             return true;
@@ -119,6 +119,19 @@ const featurePrompt = {
 //NO continue
 
 //Prompt for credit
+const creditPrompt = {
+    type: 'input',
+    name: 'credit',
+    message: 'What contributor or asset do you want give credit to? (Include links if needed)',
+    validate: (ans) => {
+        if (ans) {
+            return true;
+        }
+        else {
+            return 'Please enter a valid contributor/asset you want to credit.';
+        }
+    }
+}
 //Add another credit?
 //YES loop prompt
 //NO continue
