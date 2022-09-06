@@ -153,7 +153,7 @@ function addItemPrompt(item) {
     return itemPrompt;
 };
 
-function addAnotherPrompt(repeatPrompt, item) {
+async function addAnotherPrompt(repeatPrompt, item) {
     const itemPrompt = {
         type: 'confirm',
         name: 'addAnother',
@@ -163,91 +163,117 @@ function addAnotherPrompt(repeatPrompt, item) {
     const dataName = repeatPrompt.name;
     const questions = [repeatPrompt, itemPrompt];
     let itemsToAdd = [];
-    return inquirer.prompt(questions).then((ans) => {
+    let askAgain = true;
+    await inquirer.prompt(questions).then((ans) => {
+        askAgain = ans.addAnother;
         itemsToAdd.push(ans[`${dataName}`]);
-        if(ans.addAnother) {
-            return addAnotherPrompt(repeatPrompt, item);
-        }
-        else {
-            return itemsToAdd;
-        }
-    })
+
+        // if (ans.addAnother) {
+        //     return addAnotherPrompt(repeatPrompt, item);
+        // }
+        // else {
+        //     return itemsToAdd;
+        // }
+    });
+    if(askAgain){
+        return await addAnotherPrompt(repeatPrompt, item);
+    }
+    else {
+        return itemsToAdd;
+    }
 }
 
 //take answers and plug them in to MD timeplate literals and write file
-let basicInfoSection = '';
-inquirer.prompt(basicInfoPrompts).then((ans) => {
-    const {title, description} = ans;
-    basicInfoSection = `# ${title}\n> ${description}\n`;
-});
+async function generateReadme() {
+    let markdownContent = '';
+    let newSection = false;
+    await inquirer.prompt(basicInfoPrompts).then((ans) => {
+        const { title, description } = ans;
+        markdownContent += `# ${title}\n> ${description}\n`;
+    });
 
-let highlightSection = '';
-inquirer.prompt(addItemPrompt('a highlight feature list')).then((ans) => {
-    if(ans.willAdd){
-        highlightSection = '## Highlight Features\n';
-        addAnotherPrompt(highlightFeaturePrompt, 'another highlight feature').then((highlightArray) => {
+    // let highlightSection = '';
+    await inquirer.prompt(addItemPrompt('a highlight feature list')).then((ans) => {
+        newSection = ans.willAdd;
+    });
+    if (newSection) {
+        markdownContent += '## Highlight Features\n';
+        await addAnotherPrompt(highlightFeaturePrompt, 'another highlight feature').then((highlightArray) => {
             for (let i = 0; i < highlightArray.length; i++) {
-                highlightSection += `- ${highlightArray[i]}\n`
+                markdownContent += `- ${highlightArray[i]}\n`;
             }
         });
+        newSection = false;
     }
-});
 
-let previewSection = '';
-inquirer.prompt(addItemPrompt('a placeholder section for a preview image')).then((ans) => {
-    if(ans.willAdd){
-        previewSection = '##Preview\n'
-    }
-});
+    // let previewSection = '';
+    await inquirer.prompt(addItemPrompt('a placeholder section for a preview image')).then((ans) => {
+        if (ans.willAdd) {
+            markdownContent += '##Preview\n';
+        }
+    });
 
-let setupInstructions = '';
-inquirer.prompt(addItemPrompt('setup/installation instructions')).then((ans) => {
-    if(ans.willAdd){
-        inquirer.prompt(setUpPrompt).then((answer) => {
-            setupInstructions = `##Setup\n${answer.installInstructions}\n`;
+    // let setupInstructions = '';
+    await inquirer.prompt(addItemPrompt('setup/installation instructions')).then((ans) => {
+        newSection = ans.willAdd;
+    });
+    
+    if(newSection) {
+        await inquirer.prompt(setUpPrompt).then((answer) => {
+            markdownContent += `##Setup\n${answer.installInstructions}\n`;
         })
     }
-});
 
-let usageDirections = '';
-inquirer.prompt(addItemPrompt('usage directions')).then((ans) => {
-    if(ans.willAdd){
-        inquirer.prompt(usagePrompt).then((answer) => {
-            usageDirections = `##Usage\n${answer.usageDirections}\n`;
-        })
+    // let usageDirections = '';
+    await inquirer.prompt(addItemPrompt('usage directions')).then((ans) => {
+        newSection = ans.willAdd;
+    });
+    if(newSection){
+        await inquirer.prompt(usagePrompt).then((answer) => {
+            markdownContent += `##Usage\n${answer.usageDirections}\n`;
+        });
+        newSection = false;
     }
-});
 
-let featureSection = '';
-inquirer.prompt(addItemPrompt('a feature list')).then((ans) => {
-    if(ans.willAdd){
-        featureSection = '##Features\n';
-         addAnotherPrompt(featurePrompt, 'another feature').then((featureArray) => {
+    // let featureSection = '';
+    await inquirer.prompt(addItemPrompt('a feature list')).then((ans) => {
+        newSection = ans.willAdd;
+    });
+    if(newSection){
+        markdownContent += '##Features\n';
+        await addAnotherPrompt(featurePrompt, 'another feature').then((featureArray) => {
             for (let i = 0; i < featureArray.length; i++) {
-                featureSection += `- ${featureArray[i]}\n`
+                markdownContent += `- ${featureArray[i]}\n`;
             }
         });
+        newSection = false;
     }
-});
 
-let creditSection = '';
-inquirer.prompt(addItemPrompt('a "credits" section')).then((ans) => {
-    if(ans.willAdd){
-        creditSection = '##Credit\n';
-         addAnotherPrompt(creditPrompt, 'another contributor or asset').then((creditArray) => {
+    // let creditSection = '';
+    await inquirer.prompt(addItemPrompt('a "credits" section')).then((ans) => {
+        newSection = ans.willAdd;
+    });
+    if(newSection){
+        markdownContent += '##Credit\n';
+        await addAnotherPrompt(creditPrompt, 'another contributor or asset').then((creditArray) => {
             for (let i = 0; i < creditArray.length; i++) {
-                creditSection += `- ${creditArray[i]}\n`
+                markdownContent += `- ${creditArray[i]}\n`;
             }
         });
+        newSection = false;
     }
-});
-let licenseSection = '##License\n';
-inquirer.prompt(licensePrompt).then((ans) => {
-    if(!ans.license || (ans.license).toLowerCase() == 'n/a'){
-        licenseSection = '';
-    }
-    else {
-        licenseSection += `${ans.license}\n`;
-    }
-});
+    // let licenseSection
+    await inquirer.prompt(licensePrompt).then((ans) => {
+        if (!ans.license || (ans.license).toLowerCase() == 'n/a') {
+            markdownContent += '';
+        }
+        else {
+            markdownContent += '##License\n';
+            markdownContent += `${ans.license}\n`;
+        }
+    });
+    console.log(markdownContent);
+};
+
+generateReadme();
 
