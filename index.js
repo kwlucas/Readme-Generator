@@ -49,6 +49,19 @@ const basicInfoPrompts = [
 //Another highlight feature?
 //If yes loop the prompt if no continue
 
+const highlightFeaturePrompt = {
+    type: 'input',
+    name: 'highlightFeature',
+    message: 'What is a highlight feature of your project/application.',
+    validate: (ans) => {
+        if (ans) {
+            return true;
+        }
+        else {
+            return 'Please enter a valid feature of your project/application.';
+        }
+    }
+}
 
 
 //Prompt Make a place for preview image?
