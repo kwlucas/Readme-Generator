@@ -153,7 +153,7 @@ function addItemPrompt(item) {
     return itemPrompt;
 };
 
-async function addAnotherPrompt(repeatPrompt, item) {
+async function addAnotherPrompt(repeatPrompt, item, itemsToAdd = []) {
     const itemPrompt = {
         type: 'confirm',
         name: 'addAnother',
@@ -162,21 +162,13 @@ async function addAnotherPrompt(repeatPrompt, item) {
     }
     const dataName = repeatPrompt.name;
     const questions = [repeatPrompt, itemPrompt];
-    let itemsToAdd = [];
     let askAgain = true;
     await inquirer.prompt(questions).then((ans) => {
         askAgain = ans.addAnother;
         itemsToAdd.push(ans[`${dataName}`]);
-
-        // if (ans.addAnother) {
-        //     return addAnotherPrompt(repeatPrompt, item);
-        // }
-        // else {
-        //     return itemsToAdd;
-        // }
     });
     if(askAgain){
-        return await addAnotherPrompt(repeatPrompt, item);
+        return await addAnotherPrompt(repeatPrompt, item, itemsToAdd);
     }
     else {
         return itemsToAdd;
