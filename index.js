@@ -158,7 +158,7 @@ async function addAnotherPrompt(repeatPrompt, item, itemsToAdd = []) {
         type: 'confirm',
         name: 'addAnother',
         message: `Do you want to add ${item} to the list?`,
-        default: false
+        default: true
     }
     const dataName = repeatPrompt.name;
     const questions = [repeatPrompt, itemPrompt];
