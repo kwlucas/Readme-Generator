@@ -71,7 +71,7 @@ const highlightFeaturePrompt = {
 const setUpPrompt = {
     type: 'input',
     name: 'installInstructions',
-    message: 'Write out the instructions for setting up or installing your project/application. (To break a line add two or more spaces)',
+    message: 'Write out the instructions for setting up or installing your project/application. (To make a line break add "[br]")',
     validate: (ans) => {
         if (ans) {
             return true;
@@ -88,7 +88,7 @@ const setUpPrompt = {
 const usagePrompt = {
     type: 'input',
     name: 'usageDirections',
-    message: 'Write out the directions for using your project/application. (To break a line add two or more spaces)',
+    message: 'Write out the directions for using your project/application. (To make a line break add "[br]")',
     validate: (ans) => {
         if (ans) {
             return true;
@@ -115,7 +115,7 @@ const featurePrompt = {
     }
 };
 //ADD another feature?
-//YES loop prompt
+//YES loop pro[br]
 //NO continue
 
 //Prompt for credit
