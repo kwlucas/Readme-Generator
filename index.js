@@ -265,7 +265,7 @@ async function generateReadme() {
         }
     });
 
-    markdownContent = markdownContent.replace(/\[br\]/gi, `\n`);
+    markdownContent = markdownContent.replace(/\[br\]/gi, `  \n`);
     //console.log(markdownContent);
     const fileName = 'README.md';
     fs.writeFile(fileName, markdownContent, (err) => {
