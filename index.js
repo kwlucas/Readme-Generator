@@ -264,7 +264,12 @@ async function generateReadme() {
             markdownContent += `${ans.license}\n`;
         }
     });
-    console.log(markdownContent);
+    //console.log(markdownContent);
+    const fileName = 'README.md';
+    fs.writeFile(fileName, markdownContent, (err) => {
+        //conditional ternary operator for catching error
+        err ? console.error(err) : console.log(`"${fileName}" has been written.`);
+    })
 };
 
 generateReadme();
