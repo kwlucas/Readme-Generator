@@ -201,7 +201,7 @@ async function generateReadme() {
     // let previewSection = '';
     await inquirer.prompt(addItemPrompt('a placeholder section for a preview image')).then((ans) => {
         if (ans.willAdd) {
-            markdownContent += '##Preview\n';
+            markdownContent += '## Preview\n';
         }
     });
 
@@ -212,7 +212,7 @@ async function generateReadme() {
     
     if(newSection) {
         await inquirer.prompt(setUpPrompt).then((answer) => {
-            markdownContent += `##Setup\n${answer.installInstructions}\n`;
+            markdownContent += `## Setup\n${answer.installInstructions}\n`;
         })
     }
 
@@ -222,7 +222,7 @@ async function generateReadme() {
     });
     if(newSection){
         await inquirer.prompt(usagePrompt).then((answer) => {
-            markdownContent += `##Usage\n${answer.usageDirections}\n`;
+            markdownContent += `## Usage\n${answer.usageDirections}\n`;
         });
         newSection = false;
     }
@@ -232,7 +232,7 @@ async function generateReadme() {
         newSection = ans.willAdd;
     });
     if(newSection){
-        markdownContent += '##Features\n';
+        markdownContent += '## Features\n';
         await addAnotherPrompt(featurePrompt, 'another feature').then((featureArray) => {
             for (let i = 0; i < featureArray.length; i++) {
                 markdownContent += `- ${featureArray[i]}\n`;
@@ -246,7 +246,7 @@ async function generateReadme() {
         newSection = ans.willAdd;
     });
     if(newSection){
-        markdownContent += '##Credit\n';
+        markdownContent += '## Credit\n';
         await addAnotherPrompt(creditPrompt, 'another contributor or asset').then((creditArray) => {
             for (let i = 0; i < creditArray.length; i++) {
                 markdownContent += `- ${creditArray[i]}\n`;
@@ -260,7 +260,7 @@ async function generateReadme() {
             markdownContent += '';
         }
         else {
-            markdownContent += '##License\n';
+            markdownContent += '## License\n';
             markdownContent += `${ans.license}\n`;
         }
     });
