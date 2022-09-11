@@ -1,13 +1,13 @@
 # ReadMe Generator
-> A user can easily generate a professional looking readme mark down file for projects and applications.
-##Preview
-##Usage
-Use node to run the index file of the application.   Enter responses for the prompts in the terminal.   Generate a readme markdown file.
-##Features
-- A user is prompted for a title and description for their project and the readme will contain the proper info.
-- User is prompted whether or not they want to add highlight feature section.
-- If a user has indicated that they wish to have a highlight feature section the app will prompt the user for highlight features to add to the section.
-- Any section that the user indicates they do not wish to have in the readme is not added.
-##Credit
+> Allow a suer to easily create a professional looking read me for their applications and/or projects.
+## Preview
+## Usage
+Use node to run the "index.js" of the application.   Provide responses to the prompts in the terminal.    Generate a high quality README file.
+## Features
+- Prompts the user for a title and description of the app/project.
+- Prompts the user if they would like to have a "highlight feature" section in the readme.
+- Asks for features to be included in the highlight feature section of the readme.
+- Does not create sections that the user has opted not to have.
+## Credit
 - Lucaskw (me)
-- Inquirer (package)
+- Inquirer (node package)
