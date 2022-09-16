@@ -232,7 +232,8 @@ async function generateReadme() {
         await inquirer.prompt(setUpPrompt).then((answer) => {
             //Add the setup instructions response to the "markdownContent" string in markdown format
             markdownContent += `## Setup\n${answer.installInstructions}\n`;
-        })
+        });
+        newSection = false;
     }
 
     //Ask the user if they would like to add usage directions to the read me
