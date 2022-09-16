@@ -233,6 +233,7 @@ async function generateReadme() {
             //Add the setup instructions response to the "markdownContent" string in markdown format
             markdownContent += `## Setup\n${answer.installInstructions}\n`;
         });
+        //Reset the newSection bool
         newSection = false;
     }
 
@@ -246,6 +247,7 @@ async function generateReadme() {
             //Add the setup instructions response to the "markdownContent" string in markdown format
             markdownContent += `## Usage\n${answer.usageDirections}\n`;
         });
+        //Reset the newSection bool
         newSection = false;
     }
 
@@ -263,6 +265,7 @@ async function generateReadme() {
                 markdownContent += `- ${featureArray[i]}\n`;
             }
         });
+        //Reset the newSection bool
         newSection = false;
     }
 
@@ -280,6 +283,7 @@ async function generateReadme() {
                 markdownContent += `- ${creditArray[i]}\n`;
             }
         });
+        //Reset the newSection bool
         newSection = false;
     }
     // let licenseSection
