@@ -1,20 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-//Use inquirer to prompt user and get responses in variables 
-
-//NEED IN README
-//Title of application
-//Description (What it does and why you made it)
-//Highlight Functionality
-//Preview
-//Installation instructions (if needed)
-//Usage
-//Features
-//Credits
-//License
-
-
 //Prompt for application title
 const basicInfoPrompts = [
     {
@@ -45,11 +31,7 @@ const basicInfoPrompts = [
     }
 ];
 
-//prompt for a highlight feature
-//Another highlight feature?
-//If yes loop the prompt if no continue
-
-//prompt for highlight feature
+//Prompt for highlight feature
 const highlightFeaturePrompt = {
     type: 'input',
     name: 'highlightFeature',
@@ -63,12 +45,6 @@ const highlightFeaturePrompt = {
         }
     }
 };
-
-
-//Prompt Make a place for preview image?
-
-//Prompt Do you need to add set up instructions?
-//YES > Prompt for set up instructions
 
 //prompt for set up instructions
 const setUpPrompt = {
@@ -84,10 +60,6 @@ const setUpPrompt = {
         }
     }
 };
-//NO > continue
-
-//Prompt Do you need to add usage directions?
-//YES > Prompt for usage directions
 
 //prompt for usage directions
 const usagePrompt = {
@@ -103,7 +75,6 @@ const usagePrompt = {
         }
     }
 };
-//NO > continue
 
 //prompt for features
 const featurePrompt = {
@@ -119,9 +90,6 @@ const featurePrompt = {
         }
     }
 };
-//ADD another feature?
-//YES loop pro[br]
-//NO continue
 
 //Prompt for credit
 const creditPrompt = {
@@ -137,9 +105,6 @@ const creditPrompt = {
         }
     }
 };
-//Add another credit?
-//YES loop prompt
-//NO continue
 
 //Prompt for license message or leave blank for none
 const licensePrompt = {
