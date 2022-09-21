@@ -2,12 +2,13 @@
 > Allow a suer to easily create a professional looking read me for their applications and/or projects.
 ## Preview
 
-<!-- ![Applicaton Demo](./assets/images/appDemo.webm) -->
 <figure class="video_container">
   <video controls="true" allowfullscreen="true">
     <source src="./assets/images/appDemo.webm" type="video/webm">
   </video>
 </figure>
+
+[Application Demo (Google Drive)](https://drive.google.com/file/d/1oF48c7s5a30nvXIF_vTw-xJvM9GiiouU/view?usp=sharing)
 
 ## Usage
 Use node to run the "index.js" of the application.   Provide responses to the prompts in the terminal.    Generate a high quality README file.
