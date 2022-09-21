@@ -1,6 +1,7 @@
 # ReadMe Generator
 > Allow a suer to easily create a professional looking read me for their applications and/or projects.
 ## Preview
+[Applicaton Demo](./assets/images/appDemo.webm)
 ## Usage
 Use node to run the "index.js" of the application.   Provide responses to the prompts in the terminal.    Generate a high quality README file.
 ## Features
