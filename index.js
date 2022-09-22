@@ -267,6 +267,8 @@ async function generateReadme() {
 
     //replace any "[br]"s in the "markdownContent" string with a markdown formatted newline characters (two or more spaced followed by newline)
     markdownContent = markdownContent.replace(/\[br\]/gi, `  \n`);
+    //replace any list items starting with "[nest]" in the "markdownContent" string with a markdown formatted nested list item (four spaces followed by list item)
+    markdownContent = markdownContent.replace(/- \[nest\]/gi, `    - `);
     //console.log(markdownContent);
     const fileName = 'README.md';
     fs.writeFile(fileName, markdownContent, (err) => {
