@@ -1,6 +1,13 @@
 # ReadMe Generator
 > Allow a user to easily create a professional looking read me for their applications and/or projects.
 ## Preview
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true">
+    <source src="./assets/images/appDemo.webm" type="video/webm">
+  </video>
+</figure>
+
+[Application Demo (Google Drive)](https://drive.google.com/file/d/1oF48c7s5a30nvXIF_vTw-xJvM9GiiouU/view?usp=sharing)
 ## Set Up
 - Download the "package.json" and "index.js" files from the repository
 - Ensure that the files are located in the root directory of your project
